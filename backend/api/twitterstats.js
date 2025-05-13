@@ -1,7 +1,10 @@
 const express = require('express');
 const { chromium } = require('playwright');
-
+const cors = require('cors');
 const app = express();
+
+//allow access
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.get('/api/twitter-stats', async (req, res) => {
   try {
