@@ -30,8 +30,14 @@ html, body {
   gap: 10px;
 }
 
+.right-controls {
+  display: flex;
+  gap: 10px;
+}
+
 .right-controls button {
   padding: 8px 12px;
+  gap:10px;
   cursor: pointer;
   background-color: #fff;
   color: #000;
@@ -107,3 +113,57 @@ html, body {
   gap: 15px;
   font-size: 14px;
 }
+
+
+.username-panel {
+  position: absolute;
+  top: 80px; /* Adjust as per header height */
+  right: 20px;
+  width: 20%;
+  height: 40vh;
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #888;
+  border-radius: 8px;
+  overflow-y: auto;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  padding: 10px;
+}
+
+.username-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.username-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.username-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+.username-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 8px;
+}
+
+.username-actions button:hover {
+  color: #f00;
+}
+
