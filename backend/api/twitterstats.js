@@ -23,15 +23,18 @@ app.get('/api/twitter-stats', async (req, res) => {
           waitUntil: 'domcontentloaded',
           timeout: 30000
         });
+        
+        //to scrappe it using only a tag and span tag with Followers and Following word
+      await page.waitForSelector('a:has(span:has-text("Followers"))', { timeout: 20000 });
+      await page.waitForSelector('a:has(span:has-text("Following"))', { timeout: 20000 });
 
-        // Wait for the followers and following links to load
-        await page.waitForSelector('a[href$="/verified_followers"]', { timeout: 15000 });
-        await page.waitForSelector('a[href$="/following"]', { timeout: 15000 });
+      const followersHandle = await page.$('a:has(span:has-text("Followers")) span span');
+      const followingHandle = await page.$('a:has(span:has-text("Following")) span span');
 
-        // Extract Followers count
-        const followers = await page.locator('a[href$="/verified_followers"] span').first().textContent();
-        // Extract Following count
-        const following = await page.locator('a[href$="/following"] span').first().textContent();
+      const followers = await followersHandle?.innerText();
+      const following = await followingHandle?.innerText();
+
+      await browser.close();
 
         records.push({
           username: uname,
@@ -46,9 +49,7 @@ app.get('/api/twitter-stats', async (req, res) => {
           followers: '0',
           following: '0'
         });
-      } finally {
-        await browser.close();
-      }
+      } 
     }
 
     res.json(records);
